@@ -1,7 +1,11 @@
 using ManufacturingData_Blazor.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+// Syncfusion package
 using Syncfusion.Blazor;
+// Radzen Blazor package
+using Radzen;
+using Radzen.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +14,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<SFCDashboardService>();
 builder.Services.AddSyncfusionBlazor();
+builder.Services.AddScoped<ProdDataService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,38 @@
+﻿@page "/production"
+@using ManufacturingData_Blazor.Data
+@inject ProdDataService prodDataService
+
+<h3>Production</h3>
+
+@if(prodData == null) 
+{
+    <p>Loading...</p>
+}
+else
+{
+    <RadzenGrid AllowPaging="true" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" 
+        PageSize="4" AllowSorting="true" Data="@prodData" TItem="ProdData" ColumnWidth="150px">
+    <Columns>
+        <RadzenGridColumn TItem="ProdData" Property="SFCID" Title="SFC ID"> </RadzenGridColumn>
+        <RadzenGridColumn TItem="ProdData" Property="SFC" Title="SFC"> </RadzenGridColumn>
+        <RadzenGridColumn TItem="ProdData" Property="Date" Title="Date">
+            <Template Context="data">
+                @String.Format("{0:d}", data.Date)
+            </Template>
+        </RadzenGridColumn>
+        <RadzenGridColumn TItem="ProdData" Property="OrderType" Title="Order Type"> </RadzenGridColumn>
+        <RadzenGridColumn TItem="ProdData" Property="Status" Title="Status"> </RadzenGridColumn>
+        <RadzenGridColumn TItem="ProdData" Property="Quantity" Title="Quantity"> </RadzenGridColumn>
+    </Columns>
+    </RadzenGrid>
+}
+
+@code {
+    IEnumerable<ProdData> prodData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        prodData = await Task.Run(() => prodDataService.ProdDataList());
+    }
+
+}
