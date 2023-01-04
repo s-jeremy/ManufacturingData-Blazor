@@ -1,0 +1,49 @@
+﻿@page "/production2"
+
+<h3>Production2</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <RadzenChart>
+            <RadzenPieSeries Data="@sfc" Title="TotalSFC" CategoryProperty="StatusSFC" ValueProperty="TotalSFC">
+            
+            </RadzenPieSeries>
+        </RadzenChart>
+    </div>
+</div>
+
+@code {
+    class DataProd2
+    {
+        public string StatusSFC { get; set; }
+        public int TotalSFC { get; set; }
+    }
+    DataProd2[] sfc = new DataProd2[]
+    {
+        new DataProd2
+        {
+            StatusSFC = "START",
+            TotalSFC = 455
+        },
+        new DataProd2
+        {
+            StatusSFC = "DATA COLLECTION",
+            TotalSFC = 457
+        },
+        new DataProd2
+        {
+            StatusSFC = "COMPLETE",
+            TotalSFC = 461
+        },
+        new DataProd2
+        {
+            StatusSFC = "NON CONFORMANCE",
+            TotalSFC = 94
+        },
+        new DataProd2
+        {
+            StatusSFC = "DONE",
+            TotalSFC = 504
+        },
+    };
+}
